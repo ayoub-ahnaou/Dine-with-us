@@ -38,6 +38,10 @@
             </div>
             <!-- <img src="../assets/images/icons/menu.svg" class="size-4 hidden max-md:block" alt=""> -->
         </nav>
+
+        <footer class="bg-gray-100 p-8 text-sm flex items-center justify-center">
+            <p class="text-center">CopyRight 2024 @ All Right Reserved</p>
+        </footer>
     </div>
 </body>
 </html>
