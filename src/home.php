@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="input.css">
-    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="./assets/css/input.css">
+    <link rel="stylesheet" href="./assets/css/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
@@ -38,6 +38,21 @@
             </div>
             <!-- <img src="../assets/images/icons/menu.svg" class="size-4 hidden max-md:block" alt=""> -->
         </nav>
+
+        <div class="flex-grow">
+            <div class="h-[80vh] relative">
+                <img src="https://d2d9hom4y5lr0f.cloudfront.net/2023/02/Kadeau-Copenhagen-Kitchen-Chefs-Marie-Louise-Munkegaard-Six-Michelin-Star-Restaurants-in-Copenhagen-Scandinavia-Standard.jpg" class="w-full object-cover h-full" alt="">
+                <div class="absolute top-0 bottom-0 w-full flex items-end justify-center">
+                    <div class="gap-3 flex justify-center items-center pb-10 flex-col w-full bg-gradient-to-b from-transparent to-black">
+                        <p class="text-5xl text-white p-4">Welcome to Le Chef – Your Destination for Culinary Excellence!</p>
+                        <p class="text-white text-2xl w-2/3 max-lg:w-full px-4 text-center">
+                            At Le Chef, we believe every meal tells a story. Our mission is to bring you a world of flavors, passion, and creativity straight to your table. From exquisite recipes to expert tips, we’re here to inspire your culinary journey and elevate every dining experience.
+                        </p>
+                        <button class="bg-white p-2 px-4 rounded-full">Ready to awaken your inner chef? Let’s cook something extraordinary together!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer class="bg-gray-100 p-8 text-sm flex items-center justify-center">
             <p class="text-center">CopyRight 2024 @ All Right Reserved</p>
