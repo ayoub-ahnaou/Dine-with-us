@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Le CHEF - Home</title>
     <link rel="stylesheet" href="./assets/css/input.css">
     <link rel="stylesheet" href="./assets/css/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,10 +30,10 @@
                     <li><a class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear" href="./explore.php">Contact</a></li>
                 </ul>
                 <div class="flex items-center h-full gap-4">
-                    <div class="flex items-center hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear gap-2">
+                    <a href="./pages/login.php" class="flex items-center hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear gap-2">
                         <span>Login</span>
                         <img src="./assets/images/icons/user.svg" class="size-5" alt="">
-                    </div>
+                    </a>
                 </div>
             </div>
             <!-- <img src="../assets/images/icons/menu.svg" class="size-4 hidden max-md:block" alt=""> -->
