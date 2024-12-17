@@ -17,7 +17,7 @@
     <div class="bg-gray-50 w-full min-h-[100vh] flex flex-col justify-between items-center">
         <div class="bg-gray-100 w-full flex items-center gap-1 p-2">
             <img src="../assets/images/icons/arrow-left.svg" class="size-4" alt="">
-            <a href="../home.php" class="hover:underline cursor-pointer">Back to home page</a>
+            <a href="./home.php" class="hover:underline cursor-pointer">Back to home page</a>
         </div>
 
         <div class="flex-grow flex items-center">
