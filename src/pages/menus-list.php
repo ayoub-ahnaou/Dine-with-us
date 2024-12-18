@@ -1,10 +1,10 @@
 <div class="w-4/5 overflow-auto flex-grow max-md:w-full">
     <div class="flex p-6 justify-between pr-20">
         <p class="text-xl">Menus</p>
-        <div class="flex items-center gap-1 hover:bg-gray-100 px-4 rounded-md cursor-pointer">
+        <a href="./add-menu-form.php" class="flex items-center gap-1 hover:bg-gray-100 px-4 rounded-md cursor-pointer">
             <span>Add New Menu</span>
             <img src="../assets/images/icons/add-icons.svg" class="size-5" alt="">
-        </div>
+        </a>
     </div>
     <div class="h-[70vh] overflow-auto">
         <table
