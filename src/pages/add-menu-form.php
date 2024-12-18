@@ -58,23 +58,25 @@
                 </div>
                 <hr class="my-4">
                 <p class="text-lg pb-4">Plat Informations</p>
-                <div class="border p-1 rounded-md flex flex-col">
-                    <div class="flex flex-col">
-                        <label for="plat-type" class="text-gray-500">Plat Type</label>
-                        <input type="text" name="plat-type" id="plat-type" placeholder="e.g: Entrée, Principale, Dessert..." class="bg-gray-100 rounded-sm p-1">
-                    </div>
-                    <div class="flex flex-col">
-                        <label for="ingrediants" class="text-gray-500">Ingrediants</label>
-                        <input type="text" name="ingrediants" id="ingrediants" placeholder="Enter the ingradiants of your plat" class="bg-gray-100 rounded-sm p-1">
-                    </div>
-                    <div class="flex flex-col">
-                        <label class="text-gray-500" for="plat_picture">Plat Picture</label>
-                        <input class="text-gray-900 cursor-pointer bg-gray-100" id="plat_picture" type="file">
+                <div id="plats_container" class="flex flex-col gap-2">
+                    <div class="border p-1 rounded-md flex flex-col relative">
+                        <div class="flex flex-col">
+                            <label for="plat-type" class="text-gray-500">Plat Type</label>
+                            <input type="text" name="plat-type" id="plat-type" placeholder="e.g: Entrée, Principale, Dessert..." class="bg-gray-100 rounded-sm p-1">
+                        </div>
+                        <div class="flex flex-col">
+                            <label for="ingrediants" class="text-gray-500">Ingrediants</label>
+                            <input type="text" name="ingrediants" id="ingrediants" placeholder="Enter the ingradiants of your plat" class="bg-gray-100 rounded-sm p-1">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-gray-500" for="plat_picture">Plat Picture</label>
+                            <input class="text-gray-900 cursor-pointer bg-gray-100" id="plat_picture" type="file">
+                        </div>
                     </div>
                 </div>
 
                 <div class="flex gap-1 mt-4 justify-end">
-                    <input type="button" class="bg-gray-200 px-6 py-1 rounded-md" value="Add Another Plat" name="" id="">
+                    <input type="button" class="bg-gray-200 px-6 py-1 rounded-md" value="Add Another Plat" id="add_plat_btn">
                     <input type="submit" class="bg-black px-6 py-1 text-white rounded-md" value="Create Menu" name="" id="">
                 </div>
 
@@ -88,3 +90,25 @@
 </body>
 
 </html>
+
+<script>
+    document.getElementById("add_plat_btn").onclick = () => {
+        document.getElementById("plats_container").innerHTML += `
+            <div class="border p-1 rounded-md flex flex-col relative">
+                <img src="../assets/images/icons/trash.svg" class="size-5 absolute top-0 right-1 cursor-pointer" onclick="delete_plat_inputs(${this})" alt="">
+                <div class="flex flex-col">
+                    <label for="plat-type" class="text-gray-500">Plat Type</label>
+                    <input type="text" name="plat-type" id="plat-type" placeholder="e.g: Entrée, Principale, Dessert..." class="bg-gray-100 rounded-sm p-1">
+                </div>
+                <div class="flex flex-col">
+                    <label for="ingrediants" class="text-gray-500">Ingrediants</label>
+                    <input type="text" name="ingrediants" id="ingrediants" placeholder="Enter the ingradiants of your plat" class="bg-gray-100 rounded-sm p-1">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-gray-500" for="plat_picture">Plat Picture</label>
+                    <input class="text-gray-900 cursor-pointer bg-gray-100" id="plat_picture" type="file">
+                </div>
+            </div>
+        `;
+    }
+</script>
