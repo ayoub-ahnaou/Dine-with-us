@@ -72,7 +72,7 @@
       <!-- <img src="../assets/images/icons/menu.svg" class="size-4 hidden max-md:block" alt=""> -->
     </nav>
 
-    <div class="flex flex-grow w-full">
+    <div class="flex flex-grow w-full max-md:flex-col">
       <section class="w-1/5 bg-gray-100 flex flex-col max-md:w-full">
         <div class="flex py-6 px-2 items-center gap-1">
           <img
@@ -120,6 +120,8 @@
           </li>
         </ul>
       </section>
+
+      <?php include "./menus-list.php"; ?>
     </div>
 
     <footer class="bg-gray-100 p-8 text-sm flex items-center justify-center">
