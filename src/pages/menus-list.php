@@ -1,4 +1,4 @@
-<div class="w-4/5 overflow-auto flex-grow">
+<div class="w-4/5 overflow-auto flex-grow max-md:w-full">
     <div class="flex p-6">
         <p class="text-xl">Menus</p>
     </div>
