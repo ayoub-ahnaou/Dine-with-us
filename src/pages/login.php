@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <input value="<?php echo $password; ?>" type="password" name="password" id="password" placeholder="password" class="bg-gray-100 rounded-sm p-1">
                         <label name="password_err" class="text-red-600"><?php echo $password_err; ?></label>
                         <div class="flex gap-1">
-                            <input type="checkbox" name="show-pwd" id="show-pwd">
+                            <input onchange="handle_show_pwd()" type="checkbox" name="show-pwd" id="show-pwd">
                             <label for="show-pwd">show password</label>
                         </div>
                     </div>
@@ -90,6 +90,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </form>
         </div>
     </div>
+    <script>
+        function handle_show_pwd() {
+            if(document.getElementById("show-pwd").checked){
+                document.getElementById("password").setAttribute("type", "text");
+            }
+            else document.getElementById("password").setAttribute("type", "password");
+        }
+    </script>
 </body>
 
 </html>
