@@ -41,8 +41,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         else if($password != $confirm_password) $confirm_password_err = "Passwords are not Match!";
         else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             $create_user_statement = $connect->prepare("INSERT INTO user (username, phone, email, password, avatar) VALUES (?, ?, ?, ?, ?)");
-            $create_user_statement->bind_param("sssss", $username, $phone, $email, $password, $avatar);
+            $create_user_statement->bind_param("sssss", $username, $phone, $email, $hashed_password, $avatar);
             if($create_user_statement->execute()){
                 header("location: login.php");
             }
