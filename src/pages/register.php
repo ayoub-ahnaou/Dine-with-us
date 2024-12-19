@@ -1,3 +1,61 @@
+<?php
+include "../config/connection.php";
+
+// inputs values
+$username = "";
+$email = "";
+$password = "";
+$confirm_password = "";
+$phone = "";
+$avatar = "../assets/images/icons/user.svg";
+// label of error messages
+$username_err = "";
+$email_err = "";
+$phone_err = "";
+$password_err = "";
+$confirm_password_err = "";
+
+$error_query = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $phone = $_POST["phone"];
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
+
+    if(empty($username)) $username_err = "Username is required";
+    if(empty($email)) $email_err = "Email is required";
+    if(empty($phone)) $phone_err = "Phone is required";
+    if(empty($password)) $password_err = "USername is required";
+    if(empty($confirm_password)) $confirm_password_err = "Password confirmation is required";
+
+    if(!empty($username) && !empty($email) && !empty($phone) && !empty($password) && !empty($confirm_password)){
+        $all_users_statement = $connect->prepare("SELECT * FROM user WHERE email = ?");
+        $all_users_statement->bind_param("s", $email);
+        $all_users_statement->execute();
+        $all_users_statement->store_result();
+        
+        if($all_users_statement->num_rows > 0){
+            $email_err = "Email Already Used, Choose Another Address Email.";
+        }
+        else if($password != $confirm_password) $confirm_password_err = "Passwords are not Match!";
+        else {
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $create_user_statement = $connect->prepare("INSERT INTO user (username, phone, email, password, avatar) VALUES (?, ?, ?, ?, ?)");
+            $create_user_statement->bind_param("sssss", $username, $phone, $email, $hashed_password, $avatar);
+            if($create_user_statement->execute()){
+                header("location: login.php");
+            }
+            else {
+                $error_query = "Something Went Wrong While Inserting, Try Again Later";
+            }
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,31 +79,38 @@
         </div>
 
         <div class="flex-grow flex items-center">
-            <div class="bg-white w-[400px] h-auto shadow-lg rounded-md flex flex-col">
+            <form method="POST" action="" class="bg-white w-[400px] h-auto shadow-lg rounded-md flex flex-col">
                 <h1 class="p-4 border border-transparent border-l-black font-bold text-xl text-center">REGISTER</h1>
                 <div class="p-6 flex flex-col text-sm gap-2">
+                    <label name="error_query" class="bg-red-50 text-red-500"><?php echo $error_query; ?></label>
                     <div class="flex flex-col">
                         <label class="text-gray-500" for="username">username </label>
-                        <input type="text" name="username" id="username" placeholder="e.g: Jhone Dow" class="bg-gray-100 rounded-sm p-1">
-                        <!-- <p class="text-red-500">Email already used or invalid</p> -->
+                        <input value="<?php echo $username; ?>" autocomplete="username" type="text" name="username" id="username" placeholder="e.g: Jhone Dow" class="bg-gray-100 rounded-sm p-1">
+                        <label name="username_err" class="text-red-500"><?php echo $username_err; ?></label>
                     </div>
 
                     <div class="flex flex-col">
                         <label class="text-gray-500" for="email">email </label>
-                        <input type="email" name="email" id="email" placeholder="e.g: example@gmail.com" class="bg-gray-100 rounded-sm p-1">
-                        <!-- <p class="text-red-500">Email already used or invalid</p> -->
+                        <input value="<?php echo $email; ?>" autocomplete="email" type="email" name="email" id="email" placeholder="e.g: example@gmail.com" class="bg-gray-100 rounded-sm p-1">
+                        <label name="email_err" class="text-red-500"><?php echo $email_err; ?></label>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-gray-500" for="phone">phone </label>
+                        <input value="<?php echo $phone; ?>" type="text" name="phone" id="phone" placeholder="e.g: +212-645-506932" class="bg-gray-100 rounded-sm p-1">
+                        <label name="phone_err" class="text-red-500"><?php echo $phone_err; ?></label>
                     </div>
 
                     <div class="flex flex-col">
                         <label class="text-gray-500" for="password">password </label>
-                        <input type="password" name="password" id="password" placeholder="password" class="bg-gray-100 rounded-sm p-1">
-                        <!-- <p class="text-red-500">Password are incorrect</p> -->
+                        <input value="<?php echo $password; ?>" autocomplete="new-password" type="password" name="password" id="password" placeholder="password" class="bg-gray-100 rounded-sm p-1">
+                        <label name="password_name" class="text-red-500"><?php echo $password_err; ?></label>
                     </div>
 
                     <div class="flex flex-col">
-                        <label class="text-gray-500" for="confirm-password">confirm password </label>
-                        <input type="password" name="confirm-password" id="confirm-password" placeholder="confirm password" class="bg-gray-100 rounded-sm p-1">
-                        <!-- <p class="text-red-500">Password are incorrect</p> -->
+                        <label class="text-gray-500" for="confirm_password">confirm password </label>
+                        <input value="<?php echo $confirm_password; ?>" autocomplete="new-password" type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" class="bg-gray-100 rounded-sm p-1">
+                        <label name="confirm_password_err" class="text-red-500"><?php echo $confirm_password_err; ?></label>
                         <div class="flex gap-1 mt-2">
                             <input type="checkbox" name="show-pwd" id="show-pwd">
                             <label for="show-pwd">show password</label>
@@ -56,7 +121,7 @@
                     <input type="submit" name="submit" id="submit" value="Register" class="bg-black rounded-md p-2 mt-8 text-white">
                     <p class="mt-1">Already have an Account? <a class="font-bold hover:underline" href="login.php">Login</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
