@@ -18,16 +18,25 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($password)) $password_err = "Password is required";
 
     if(!empty($email) && !empty($password)) {
-        $user_statement = $connect->prepare("SELECT password FROM user WHERE email = ?");
+        $user_statement = $connect->prepare("SELECT user_id, username, email, phone, password, avatar, role_id FROM user WHERE email = ?");
         $user_statement->bind_param("s", $email);
         $user_statement->execute();
         $user_statement->store_result();
 
         if($user_statement->num_rows > 0){
-            $user_statement->bind_result($db_password);
+            $user_statement->bind_result($db_user_id, $db_username, $db_email, $db_phone, $db_password, $db_avatar, $db_role_id);
             while($user_statement->fetch()){
                 if(password_verify($password, $db_password)){
+                    $_SESSION["username"] = $db_username;
+                    $_SESSION["role"] = $db_role_id;
+                    $_SESSION["avatar"] = $db_avatar;
+                    $_SESSION["email"] = $db_email;
+
+                    if($db_role_id == 2)
                     header("location: ./dashboard.php");
+                    if($db_role_id == 1)
+                        header("location: ./home.php");
+                    exit();
                 }
                 else $password_err = "Password is incorrect";
             }

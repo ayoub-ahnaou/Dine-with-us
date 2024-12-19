@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input value="<?php echo $confirm_password; ?>" autocomplete="new-password" type="password" name="confirm_password" id="confirm_password" placeholder="confirm password" class="bg-gray-100 rounded-sm p-1">
                         <label name="confirm_password_err" class="text-red-500"><?php echo $confirm_password_err; ?></label>
                         <div class="flex gap-1 mt-2">
-                            <input type="checkbox" name="show-pwd" id="show-pwd">
+                            <input onchange="handle_show_pwd()" type="checkbox" name="show-pwd" id="show-pwd">
                             <label for="show-pwd">show password</label>
                         </div>
                     </div>
@@ -124,6 +124,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
     </div>
+    
+    <script>
+        function handle_show_pwd() {
+            if(document.getElementById("show-pwd").checked){
+                document.getElementById("confirm_password").setAttribute("type", "text");
+            }
+            else document.getElementById("confirm_password").setAttribute("type", "password");
+        }
+    </script>
 </body>
 
 </html>
