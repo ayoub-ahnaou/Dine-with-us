@@ -41,6 +41,7 @@
             <!-- <img src="../assets/images/icons/menu.svg" class="size-4 hidden max-md:block" alt=""> -->
         </nav>
 
+        <div class="bg-black h-6"></div>
         <div class="flex flex-grow flex-col gap-4 px-20 max-md:px-6 max-sm:px-2 py-4 bg-white">
             <form class="max-w-lg mx-auto bg-white shadow-md h-auto p-2 rounded-md w-1/2 text-sm">
                 <p class="text-xl pb-4">Menu Informations</p>
@@ -51,7 +52,7 @@
                 <div class="flex flex-col">
                     <label for="menu-description" class="text-gray-500">Menu Description</label>
                     <input type="text" name="menu-description" id="menu-description" placeholder="Enter The Description of Your Menu" class="bg-gray-100 rounded-sm p-1">
-                </div>
+                </div> 
                 <div class="flex flex-col">
                     <label class="text-gray-500" for="plat_picture">Menu Picture</label>
                     <input class="text-gray-900 cursor-pointer bg-gray-100" id="plat_picture" type="file">
@@ -95,7 +96,7 @@
     document.getElementById("add_plat_btn").onclick = () => {
         document.getElementById("plats_container").innerHTML += `
             <div class="border p-1 rounded-md flex flex-col relative">
-                <img src="../assets/images/icons/trash.svg" class="size-5 absolute top-0 right-1 cursor-pointer" onclick="delete_plat_inputs(${this})" alt="">
+                <img src="../assets/images/icons/trash.svg" class="size-5 absolute top-0 right-1 cursor-pointer" alt="">
                 <div class="flex flex-col">
                     <label for="plat-type" class="text-gray-500">Plat Type</label>
                     <input type="text" name="plat-type" id="plat-type" placeholder="e.g: Entrée, Principale, Dessert..." class="bg-gray-100 rounded-sm p-1">

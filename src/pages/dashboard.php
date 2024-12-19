@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 </head>
 
 <body class="font-[Oswald]">
@@ -121,7 +122,7 @@
         </ul>
       </section>
 
-      <?php include "./menus-list.php"; ?>
+      <?php include "./graphs.php"; ?>
     </div>
 
     <footer class="bg-gray-100 p-8 text-sm flex items-center justify-center">
