@@ -1,3 +1,45 @@
+<?php 
+include "../config/connection.php";
+session_start();
+// inputs values
+$email = "";
+$password = "";
+// label of error messages
+$email_err = "";
+$password_err = "";
+// global errors label
+$error_query = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    if(empty($email)) $email_err = "Email is required";
+    if(empty($password)) $password_err = "Password is required";
+
+    if(!empty($email) && !empty($password)) {
+        $user_statement = $connect->prepare("SELECT password FROM user WHERE email = ?");
+        $user_statement->bind_param("s", $email);
+        $user_statement->execute();
+        $user_statement->store_result();
+
+        if($user_statement->num_rows > 0){
+            $user_statement->bind_result($db_password);
+            while($user_statement->fetch()){
+                if(password_verify($password, $db_password)){
+                    header("location: ./dashboard.php");
+                }
+                else $password_err = "Password is incorrect";
+            }
+        }
+        else {
+            $error_query = "Email or Password are Incorrect";
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,19 +63,20 @@
         </div>
 
         <div class="flex-grow flex items-center">
-            <div class="bg-white w-[400px] h-auto shadow-lg rounded-md flex flex-col">
+            <form action="" method="post" class="bg-white w-[400px] h-auto shadow-lg rounded-md flex flex-col">
                 <h1 class="p-4 border border-transparent border-l-black font-bold text-xl text-center">LOGIN</h1>
                 <div class="p-6 flex flex-col text-sm gap-2">
+                    <label name="error_query" class="bg-red-50 text-red-500"><?php echo $error_query; ?></label>
                     <div class="flex flex-col">
                         <label class="text-gray-500" for="email">email </label>
-                        <input type="email" name="email" id="email" placeholder="e.g: example@gmail.com" class="bg-gray-100 rounded-sm p-1">
-                        <!-- <p class="text-red-600">Email already used or invalid</p> -->
+                        <input value="<?php echo $email; ?>" type="email" name="email" id="email" placeholder="e.g: example@gmail.com" class="bg-gray-100 rounded-sm p-1">
+                        <label name="email_err" class="text-red-600"><?php echo $email_err; ?></label>
                     </div>
 
                     <div class="flex flex-col gap-1">
                         <label class="text-gray-500" for="password">password </label>
-                        <input type="password" name="password" id="password" placeholder="password" class="bg-gray-100 rounded-sm p-1">
-                        <!-- <p class="text-red-600">Password are incorrect</p> -->
+                        <input value="<?php echo $password; ?>" type="password" name="password" id="password" placeholder="password" class="bg-gray-100 rounded-sm p-1">
+                        <label name="password_err" class="text-red-600"><?php echo $password_err; ?></label>
                         <div class="flex gap-1">
                             <input type="checkbox" name="show-pwd" id="show-pwd">
                             <label for="show-pwd">show password</label>
@@ -44,7 +87,7 @@
                     <input type="submit" name="submit" id="submit" value="Login" class="bg-black rounded-md p-2 mt-8 text-white">
                     <p class="mt-1">Don't have an Account? <a class="font-bold hover:underline" href="register.php">Register</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>
