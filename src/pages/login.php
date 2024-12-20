@@ -33,10 +33,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $_SESSION["email"] = $db_email;
 
                     if($db_role_id == 2)
-                    header("location: ./dashboard.php");
-                    if($db_role_id == 1)
+                        header("location: ./dashboard.php");
+                    elseif($db_role_id == 1)
                         header("location: ./home.php");
-                    exit();
                 }
                 else $password_err = "Password is incorrect";
             }

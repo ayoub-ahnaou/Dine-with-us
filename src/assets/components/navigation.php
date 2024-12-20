@@ -1,10 +1,15 @@
-<?php 
-    session_start();
-    if(isset($_SESSION["username"])){
-        $username = $_SESSION["username"];
-        $avatar = $_SESSION["avatar"];
-        $role = $_SESSION["role"];
-    }
+<?php
+include "../config/connection.php";
+session_start();
+if (isset($_SESSION["username"])) {
+    $username = $_SESSION["username"];
+    $avatar = $_SESSION["avatar"];
+    $role = $_SESSION["role"];
+}
+
+$path = $_SERVER["REQUEST_URI"];
+$path_elem = explode("/", $path);
+$curr_path = $path_elem["4"];
 ?>
 
 <nav
@@ -23,43 +28,54 @@
         <ul class="flex items-center">
             <li>
                 <a
-                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear"
+                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear <?php if($curr_path == "home.php") echo "bg-gray-100 border-b-gray-700"; ?>"
                     href="./home.php">Home</a>
             </li>
             <li>
                 <a
-                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear"
+                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear <?php if($curr_path == "reservation.php") echo "bg-gray-100 border-b-gray-700"; ?>"
                     href="./reservation.php">Reservations</a>
             </li>
             <li>
                 <a
-                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear"
+                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear <?php if($curr_path == "menu.php") echo "bg-gray-100 border-b-gray-700"; ?>"
                     href="./menu.php">Menu</a>
             </li>
             <li>
                 <a
-                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear"
+                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear <?php if($curr_path == "about.php") echo "bg-gray-100 border-b-gray-700"; ?>"
                     href="./about.php">About</a>
             </li>
             <li>
                 <a
-                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear"
+                    class="hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear <?php if($curr_path == "contact.php") echo "bg-gray-100 border-b-gray-700"; ?>"
                     href="./contact.php">Contact</a>
             </li>
-            <?php 
-            if($role == 2){
-                echo "<li>
-                <a
-                class='hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear'
-                href='./dashboard.php'>Dashboard</a>
-                </li>";
+            <?php
+            if(isset($_SESSION["role"])){
+                if ($role == 2) {
+                    echo "<li>";
+                    echo "<a class='hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear ";
+                    if($curr_path == "dashboard.php") echo "bg-gray-100 border-b-gray-700'";
+                    echo "' href='./dashboard.php'>Dashboard</a></li>";
+                }
             }
             ?>
         </ul>
-        <div class="flex items-center h-full gap-4">
-            <?php 
-                if(isset($_SESSION["username"])){
-                    echo "<a
+        <div class="flex items-center h-full">
+            <?php
+            if (isset($_SESSION["username"])) {
+                echo "<a
+                        href='./logout.php'
+                        class='flex items-center hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-2 cursor-pointer transition-all delay-75 ease-linear gap-2'>
+                        <span>Logout</span>
+                        <img
+                            src='../assets/images/icons/logout.svg'
+                            class='size-5'
+                            alt='' />
+                    </a>";
+
+                echo "<a
                         href='./profile.php'
                         class='flex items-center hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear gap-2'>
                         <span>$username</span>
@@ -68,19 +84,17 @@
                             class='size-5'
                             alt='' />
                     </a>";
-
-                }
-                else{
-                    echo "<a
+            } else {
+                echo "<a
                         href='./login.php'
                         class='flex items-center hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-4 cursor-pointer transition-all delay-75 ease-linear gap-2'>
                         <span>Login</span>
                         <img
-                            src='../assets/images/icons/'
+                            src='../assets/images/icons/user.svg'
                             class='size-5'
                             alt='' />
                     </a>";
-                }
+            }
             ?>
         </div>
     </div>
