@@ -20,7 +20,7 @@
   <div class="min-h-[100vh] flex flex-col">
     <?php include "../assets/components/navigation.php"; ?>
     <?php
-      if(!isset($_SESSION["role"])){
+      if(!isset($_SESSION["role"]) || $_SESSION["role"] != 2){
         header("location: ./login.php");
       }
     ?>
