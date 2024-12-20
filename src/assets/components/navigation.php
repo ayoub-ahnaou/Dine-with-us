@@ -70,7 +70,7 @@ $curr_path = $path_elem["4"];
                         class='flex items-center hover:bg-gray-100 hover:border-b-gray-700 border-transparent border p-2 px-2 cursor-pointer transition-all delay-75 ease-linear gap-2'>
                         <span>Logout</span>
                         <img
-                            src=$avatar
+                            src='../assets/images/icons/logout.svg'
                             class='size-5'
                             alt='' />
                     </a>";
