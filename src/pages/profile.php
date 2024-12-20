@@ -19,6 +19,9 @@
 <body class="font-[Oswald]">
     <div class="min-h-[100vh] flex flex-col">
         <?php include "../assets/components/navigation.php"; ?>
+        <?php if(!isset($_SESSION["username"])){
+            header("location:javascript://history.go(-1)");
+        } ?>
 
         <div class="flex-grow flex items-center justify-center">
             <p class="text-2xl text-green-700">Comming Soon 402</p>
