@@ -16,6 +16,11 @@
 <body class="font-[Oswald]">
     <div class="min-h-[100vh] flex flex-col">
         <?php include "../assets/components/navigation.php"; ?>
+        <?php
+        if(!isset($_SESSION["username"])){
+            header("location: ./login.php");
+        }
+        ?>
 
         <div class="flex-grow flex flex-col gap-4 py-6 px-20 max-md:px-6 max-sm:px-2">
             <div class="">

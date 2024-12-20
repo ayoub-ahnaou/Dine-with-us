@@ -19,6 +19,11 @@
 <body class="font-[Oswald]">
   <div class="min-h-[100vh] flex flex-col">
     <?php include "../assets/components/navigation.php"; ?>
+    <?php
+      if(!isset($_SESSION["role"])){
+        header("location: ./login.php");
+      }
+    ?>
 
     <div class="flex flex-grow w-full max-md:flex-col">
       <section class="w-1/5 bg-gray-100 flex flex-col max-md:w-full">
