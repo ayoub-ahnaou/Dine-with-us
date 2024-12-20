@@ -1,4 +1,4 @@
-<div class="w-4/5 flex flex-col max-md:w-full">
+<div id="graphs" class="w-4/5 flex flex-col max-md:w-full">
     <div class="flex p-6">
         <p class="text-xl">Data Visualisation</p>
     </div>
