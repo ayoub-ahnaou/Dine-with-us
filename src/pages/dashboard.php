@@ -75,6 +75,16 @@
               alt="" />
             <p>Reservations</p>
           </li>
+          <li
+            onclick="switch_option(this.id, 'plats')"
+            id="plats_choice"
+            class="p-2 hover:bg-white transition-all delay-75 ease-linear cursor-pointer flex items-center gap-2">
+            <img
+              src="../assets/images/icons/plat.svg"
+              class="size-5"
+              alt="" />
+            <p>Plats</p>
+          </li>
         </ul>
       </section>
 
@@ -83,6 +93,7 @@
       include "./users-list.php";
       include "./menus-list.php";
       include "./reservations-list.php";
+      include "./plats-list.php";
       ?>
 
       <script>
@@ -97,16 +108,19 @@
           const users = document.getElementById("users-list");
           const menus = document.getElementById("menus-list");
           const reservations = document.getElementById("reservations-list");
+          const plats = document.getElementById("plats-list");
 
           graphs.classList.add("hidden");
           users.classList.add("hidden");
           menus.classList.add("hidden");
           reservations.classList.add("hidden");
+          plats.classList.add("hidden");
 
           if(choice == "graphs") graphs.classList.remove("hidden");
           if(choice == "users") users.classList.remove("hidden");
           if(choice == "menus") menus.classList.remove("hidden");
           if(choice == "reservations") reservations.classList.remove("hidden");
+          if(choice == "plats") plats.classList.remove("hidden");
         }
       </script>
     </div>
