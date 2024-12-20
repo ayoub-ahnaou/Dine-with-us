@@ -36,8 +36,8 @@
         </div>
         <ul class="flex flex-col">
           <li
-            onclick="switch_option(this.id)"
-            id="graphs"
+            onclick="switch_option(this.id, 'graphs')" 
+            id="visualisation_choice"
             class="p-2 hover:bg-white bg-white transition-all delay-75 ease-linear cursor-pointer flex items-center gap-2">
             <img
               src="../assets/images/icons/graphs.svg"
@@ -46,8 +46,8 @@
             <p>Visualisation</p>
           </li>
           <li
-            onclick="switch_option(this.id)"
-            id="users-list"
+            onclick="switch_option(this.id, 'users')"
+            id="users_choice"
             class="p-2 hover:bg-white transition-all delay-75 ease-linear cursor-pointer flex items-center gap-2">
             <img
               src="../assets/images/icons/users.svg"
@@ -56,8 +56,8 @@
             <p>Users</p>
           </li>
           <li
-            onclick="switch_option(this.id)"
-            id="menus-list"
+            onclick="switch_option(this.id, 'menus')"
+            id="menus_choice"
             class="p-2 hover:bg-white transition-all delay-75 ease-linear cursor-pointer flex items-center gap-2">
             <img
               src="../assets/images/icons/menus.svg"
@@ -66,8 +66,8 @@
             <p>Menus</p>
           </li>
           <li
-            onclick="switch_option(this.id)"
-            id="reservations-list"
+            onclick="switch_option(this.id, 'reservations')"
+            id="reservations_choice"
             class="p-2 hover:bg-white transition-all delay-75 ease-linear cursor-pointer flex items-center gap-2">
             <img
               src="../assets/images/icons/reservations.svg"
@@ -78,19 +78,37 @@
         </ul>
       </section>
 
-    <script>
-      function switch_option(id_target){
-        const lists = document.querySelectorAll("#dashboard li");
-        Array.from(lists).map((item) => {
-          item.classList.remove("bg-white");
-        })
-        Array.from(lists).map((item) => {
-          if(item.id == id_target){
-            item.classList.add("bg-white");
-          }
-        })
-      }
-    </script>
+      <?php 
+      include "./graphs.php";
+      include "./users-list.php";
+      include "./menus-list.php";
+      include "./reservations-list.php";
+      ?>
+
+      <script>
+        function switch_option(id_target, choice){
+          const lists = document.querySelectorAll("#dashboard li");
+          Array.from(lists).map((item) => item.classList.remove("bg-white"));
+          Array.from(lists).map((item) => {
+            if(item.id == id_target) item.classList.add("bg-white");
+          });
+
+          const graphs = document.getElementById("graphs");
+          const users = document.getElementById("users-list");
+          const menus = document.getElementById("menus-list");
+          const reservations = document.getElementById("reservations-list");
+
+          graphs.classList.add("hidden");
+          users.classList.add("hidden");
+          menus.classList.add("hidden");
+          reservations.classList.add("hidden");
+
+          if(choice == "graphs") graphs.classList.remove("hidden");
+          if(choice == "users") users.classList.remove("hidden");
+          if(choice == "menus") menus.classList.remove("hidden");
+          if(choice == "reservations") reservations.classList.remove("hidden");
+        }
+      </script>
     </div>
 
     <footer class="bg-gray-100 p-8 text-sm flex items-center justify-center">
