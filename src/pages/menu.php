@@ -32,24 +32,14 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <?php 
                 while($all_menus->fetch()){
-                    echo "<div class='flex flex-col gap-1'>
+                    echo "<a href='./menu-details.php?menu_id=$menu_id' class='flex flex-col gap-1'>
                         <img class='h-auto max-w-full rounded-lg' src='https://photo.cuisineactuelle.fr/imgre/scale/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FCAC.2F2019.2F09.2F20.2Fc7176c79-4cce-46da-a6db-786d43c41fbf.2Ejpeg/autox600/quality/65/crop-from/center/picture.jpeg' alt=''>
                         <p class='text-gray-700'>$menu_title</p>
                         <p class='text-gray-500 text-sm'>$menu_description</p>
-                    </div>";
+                    </a>";
                 }
                 ?>
             </div>
-            <!-- <div class="w-full h-10 flex items-center justify-center gap-4">
-                <img src="../assets/images/icons/arrow-left.svg" class="size-5" alt="">
-                <span class="hover:bg-gray-100 rounded-full w-6 cursor-pointer text-center">1</span>
-                <span class="hover:bg-gray-100 rounded-full w-6 cursor-pointer text-center">2</span>
-                <span class="hover:bg-gray-100 rounded-full w-6 cursor-pointer text-center">3</span>
-                <span class="hover:bg-gray-100 rounded-full w-6 cursor-pointer text-center">4</span>
-                <span class="hover:bg-gray-100 rounded-full w-6 cursor-pointer text-center">...</span>
-                <span class="hover:bg-gray-100 rounded-full w-6 cursor-pointer text-center">99</span>
-                <img src="../assets/images/icons/arrow-left.svg" class="size-5 rotate-180" alt="">
-            </div> -->
         </section>
 
         <footer class="bg-gray-100 p-8 text-sm flex items-center justify-center">
