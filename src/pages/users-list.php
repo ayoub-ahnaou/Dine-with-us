@@ -36,7 +36,7 @@ $all_users->bind_result($user_id, $username, $phone, $email, $role_id, $role_nam
                     <td class='px-6 py-2'>$role_name</td>
                     <td class='px-6 py-2 flex gap-2'>
                         <a
-                            href='#'
+                            href='./process/delete-user.php?user_id=$user_id'
                             class='font-medium text-red-600 dark:text-red-500 hover:underline'>Delete</a>
                     </td>
                 </tr>";
