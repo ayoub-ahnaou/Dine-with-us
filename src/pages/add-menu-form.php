@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $update_menu_plats_statment = $connect->prepare("UPDATE plat SET menu_id = ? WHERE plat_id = ?");
                 $update_menu_plats_statment->bind_param("ii", $last_menu_id, $plat_id);
                 if($update_menu_plats_statment->execute()){
+                    $update_menu_plats_statment->close();
                     header("location: ./dashboard.php");
                 }
                 else{

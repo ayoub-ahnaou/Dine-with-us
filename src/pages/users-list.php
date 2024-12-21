@@ -41,6 +41,7 @@ $all_users->bind_result($user_id, $username, $phone, $email, $role_id, $role_nam
                     </td>
                 </tr>";
             }
+            $all_users->close();
             ?>
         </tbody>
     </table>
