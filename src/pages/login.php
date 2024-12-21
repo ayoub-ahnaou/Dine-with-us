@@ -1,6 +1,12 @@
 <?php 
 include "../config/connection.php";
 session_start();
+
+if(isset($_SESSION["role"])){
+    header("location:javascript://history.go(-1)");
+    exit();
+}
+
 // inputs values
 $email = "";
 $password = "";

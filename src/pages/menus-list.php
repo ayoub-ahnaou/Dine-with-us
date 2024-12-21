@@ -1,4 +1,4 @@
-<div class="w-4/5 overflow-auto flex-grow max-md:w-full">
+<div id="menus-list" class="hidden w-4/5 overflow-auto flex-grow max-md:w-full">
     <div class="flex p-6 justify-between pr-20">
         <p class="text-xl">Menus</p>
         <a href="./add-menu-form.php" class="flex items-center gap-1 hover:bg-gray-100 px-4 rounded-md cursor-pointer">
