@@ -33,6 +33,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $user_statement->bind_result($db_user_id, $db_username, $db_email, $db_phone, $db_password, $db_avatar, $db_role_id);
             while($user_statement->fetch()){
                 if(password_verify($password, $db_password)){
+                    $_SESSION["user_id"] = $db_user_id;
                     $_SESSION["username"] = $db_username;
                     $_SESSION["role"] = $db_role_id;
                     $_SESSION["avatar"] = $db_avatar;
