@@ -17,9 +17,9 @@
     <div class="min-h-[100vh] flex flex-col">
         <?php include "../assets/components/navigation.php"; ?>
         <?php 
-        $eight_menus_stm = $connect->prepare("SELECT menu_id, menu_title, menu_description, menu_picture FROM menu");
-        $eight_menus_stm->execute();
-        $eight_menus_stm->bind_result($menu_id, $menu_title, $menu_description, $menu_picture);
+            $eight_menus_stm = $connect->prepare("SELECT menu_id, menu_title, menu_description, menu_picture FROM menu");
+            $eight_menus_stm->execute();
+            $eight_menus_stm->bind_result($menu_id, $menu_title, $menu_description, $menu_picture);
         ?>
 
         <div class="flex-grow flex flex-col gap-4">
@@ -44,13 +44,13 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <?php 
-                    while($eight_menus_stm->fetch()){
-                        echo "<a href='./menu-details.php?menu_id=$menu_id' class='flex flex-col gap-1'>
-                            <img class='h-auto max-w-full rounded-lg' src='https://photo.cuisineactuelle.fr/imgre/scale/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FCAC.2F2019.2F09.2F20.2Fc7176c79-4cce-46da-a6db-786d43c41fbf.2Ejpeg/autox600/quality/65/crop-from/center/picture.jpeg' alt=''>
-                            <p class='text-gray-700'>$menu_title</p>
-                            <p class='text-gray-500 text-sm'>$menu_description</p>
-                        </a>";
-                    }
+                        while($eight_menus_stm->fetch()){
+                            echo "<a href='./menu-details.php?menu_id=$menu_id' class='flex flex-col gap-1'>
+                                <img class='h-auto max-w-full rounded-lg' src='https://photo.cuisineactuelle.fr/imgre/scale/http.3A.2F.2Fprd2-bone-image.2Es3-website-eu-west-1.2Eamazonaws.2Ecom.2FCAC.2F2019.2F09.2F20.2Fc7176c79-4cce-46da-a6db-786d43c41fbf.2Ejpeg/autox600/quality/65/crop-from/center/picture.jpeg' alt=''>
+                                <p class='text-gray-700'>$menu_title</p>
+                                <p class='text-gray-500 text-sm'>$menu_description</p>
+                            </a>";
+                        }
                     ?>
                 </div>
             </section>
