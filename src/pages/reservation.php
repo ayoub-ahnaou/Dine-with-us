@@ -85,9 +85,7 @@
                                 $reservation_date
                             </td>
                             <td class='px-6 py-4'>
-                                <div class='flex items-center'>
-                                    <div class='h-2.5 w-2.5 rounded-full bg-yellow-500 me-2'></div> $status
-                                </div>
+                                <div class='flex items-center'>$status</div>
                             </td>
                             <td class='px-6 py-4'>
                                 <a href='./process/cancel-reservation.php?reservation_id=$reservation_id' class='font-medium text-red-600 hover:underline'>Cancel Reservation</a>
