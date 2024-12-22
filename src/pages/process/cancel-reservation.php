@@ -10,7 +10,7 @@ $cancel_res_stm->bind_param("ii", $user_id, $reservation_id);
 if($cancel_res_stm->execute()){
     $_SESSION["result"] = "Reservation canceled with succes";
     echo $user_id . "  " . $reservation_id;
-    header("location:javascript://history.go(-1)");
+    header("location: ../reservation.php");
 } else {
     echo $connect->error;
 }
