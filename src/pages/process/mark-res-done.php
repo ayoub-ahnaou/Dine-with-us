@@ -11,6 +11,7 @@ if($cancel_res_stm->execute()){
     $_SESSION["result"] = "Reservation approved with succes";
     echo $user_id . "  " . $reservation_id;
     header("location:javascript://history.go(-1)");
+    $_SESSION["result"] = "Reservation mark as done with succes";
     // header("location: ../dashboard.php");
 } else {
     echo $connect->error;
