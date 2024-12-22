@@ -63,7 +63,7 @@
                 ?>
 
                 <?php
-                echo "<form method='post' action='./make-reservation.php?menu_id=$menu_id' class='flex justify-end mt-2'>
+                echo "<form method='post' action='./process/make-reservation.php?menu_id=$menu_id' class='flex justify-end mt-2'>
                     <input type='submit' value='Book now !' class='bg-black text-white px-6 py-2 rounded-md' name='' id=''>
                 </form>";
                 ?>
