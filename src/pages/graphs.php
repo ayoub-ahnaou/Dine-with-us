@@ -50,26 +50,27 @@
         </div> 
 
         <?php 
-        $reservation_pended = $connect->prepare("SELECT count(reservation_id) from reservation WHERE status = 'Pendding'");
-        $reservation_cancelled = $connect->prepare("SELECT count(reservation_id) from reservation WHERE status = 'Cancelled'");
-        $reservation_approved = $connect->prepare("SELECT count(reservation_id) from reservation WHERE status = 'Approved'");
+        $reservation_pended = $connect->prepare("SELECT count(reservation_id) from reservation WHERE status LIKE 'Pendding'");
+        $reservation_cancelled = $connect->prepare("SELECT count(reservation_id) from reservation WHERE status LIKE 'Canceled'");
+        $reservation_approved = $connect->prepare("SELECT count(reservation_id) from reservation WHERE status LIKE 'Approved'");
 
-        // Execute the queries
         $reservation_pended->execute();
         $reservation_pended->bind_result($reservation_pended_result);
+        $reservation_pended_result = $reservation_pended->get_result()->fetch_row()[0];
         $reservation_pended->close();
 
+        // var_dump($reservation_pended_result);
         $reservation_cancelled->execute();
         $reservation_cancelled->bind_result($reservation_cancelled_result);
+        $reservation_cancelled_result = $reservation_cancelled->get_result()->fetch_row()[0];
         $reservation_cancelled->close();
 
         $reservation_approved->execute();
         $reservation_approved->bind_result($reservation_approved_result);
+        $reservation_approved_result = $reservation_approved->get_result()->fetch_row()[0];
         $reservation_approved->close();
 
-        if($reservation_approved_result == null) $reservation_approved_result = 0;
-        if($reservation_cancelled_result == null) $reservation_cancelled_result = 0;
-        if($reservation_pended_result == null) $reservation_pended_result = 0;
+
         ?>
         <!-- Line Chart -->
         <div class="py-6" id="pie-chart"></div>
