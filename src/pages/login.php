@@ -7,6 +7,9 @@ if(isset($_SESSION["role"])){
     exit();
 }
 
+$email_pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+$name_pattern = "/^[a-zA-Z\s]+$/";
+
 // inputs values
 $email = "";
 $password = "";
@@ -17,10 +20,11 @@ $password_err = "";
 $error_query = "";
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $email = $_POST["email"];
-    $password = $_POST["password"];
+    $email = htmlspecialchars($_POST["email"]);
+    $password = htmlspecialchars($_POST["password"]);
 
     if(empty($email)) $email_err = "Email is required";
+    if(!preg_match($email_pattern, $email)) $email_err = "Email address invalid";
     if(empty($password)) $password_err = "Password is required";
 
     if(!empty($email) && !empty($password)) {
