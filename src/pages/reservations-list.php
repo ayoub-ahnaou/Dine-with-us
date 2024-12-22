@@ -1,10 +1,10 @@
 <?php 
-$all_reservations = $connect->prepare("SELECT r.reservation_id, r.user_id, user.username, reservation_date, user.phone, user.email
+$all_reservations = $connect->prepare("SELECT r.reservation_id, r.user_id, user.username, reservation_date, user.phone, user.email, status
 FROM reservation_menu AS rm, menu AS m, reservation AS r, user
 WHERE rm.reservation_id = r.reservation_id AND rm.menu_id = m.menu_id AND user.user_id = r.user_id");
 
 $all_reservations->execute();
-$all_reservations->bind_result($reservation_id, $user_id, $username, $reservation_date, $phone, $email);
+$all_reservations->bind_result($reservation_id, $user_id, $username, $reservation_date, $phone, $email, $status);
 ?>
 
 <div id="reservations-list" class="hidden w-4/5 overflow-auto flex-grow max-md:w-full">
@@ -38,14 +38,14 @@ $all_reservations->bind_result($reservation_id, $user_id, $username, $reservatio
                 <td class='px-6 py-2'>$reservation_date</td>
                 <td class='px-6 py-2'>$phone</td>
                 <td class='px-6 py-2'>$email</td>
-                <td class='px-6 py-2'>Pendding</td>
+                <td class='px-6 py-2'>$status</td>
                 <td class='px-6 py-2 flex gap-2'>
                     <a
                         href='#'
                         class='font-medium text-red-600 dark:text-red-500 hover:underline'>Delete
                     </a>
                     <a
-                        href='#'
+                        href='./process/mark-res-done.php?reservation_id=$reservation_id&user_id=$user_id'
                         class='font-medium text-green-600 dark:text-green-500 hover:underline'>Marke as Done
                     </a>
                 </td>

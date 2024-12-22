@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include "../config/connection.php";
+include "../../config/connection.php";
 
 $date_now = date('Y-m-d H:i:s');
 $menu_id = $_GET["menu_id"];
