@@ -51,6 +51,7 @@ $all_plats_statment->bind_result($plat_id, $plat_title, $ingredients, $plat_type
                             </td>
                         </tr>";
                     }
+                    $all_plats_statment->close();
                     // echo "<p class='text-red-500 bg-red-50 p-1'>No plats is available</p>";
                 ?>
             </tbody>
