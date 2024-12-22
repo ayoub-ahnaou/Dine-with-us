@@ -46,6 +46,7 @@
             from user, menu, reservation, reservation_menu
             where reservation_menu.menu_id = menu.menu_id 
             and reservation.reservation_id = reservation_menu.reservation_id 
+            and user.user_id = reservation.user_id
             and user.user_id = ?");
             $user_reservations_stm->bind_param("i", $user_id);
             $user_reservations_stm->bind_result($reservation_id, $menu_picture, $menu_title, $menu_description, $reservation_date, $status);
@@ -89,10 +90,11 @@
                                 </div>
                             </td>
                             <td class='px-6 py-4'>
-                                <a href='#' class='font-medium text-red-600 hover:underline'>Cancel Reservation</a>
+                                <a href='./process/cancel-reservation.php?reservation_id=$reservation_id' class='font-medium text-red-600 hover:underline'>Cancel Reservation</a>
                             </td>
                         </tr>";
                         }
+                        $user_reservations_stm->close();
                         ?>
                     </tbody>
                 </table>
