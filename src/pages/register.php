@@ -17,15 +17,20 @@ $confirm_password_err = "";
 
 $error_query = "";
 
+$email_pattern = "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+$name_pattern = "/^[a-zA-Z\s]+$/";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $email = $_POST["email"];
-    $phone = $_POST["phone"];
-    $password = $_POST["password"];
-    $confirm_password = $_POST["confirm_password"];
+    $username = htmlspecialchars($_POST["username"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $phone = htmlspecialchars($_POST["phone"]);
+    $password = htmlspecialchars($_POST["password"]);
+    $confirm_password = htmlspecialchars($_POST["confirm_password"]);
 
     if(empty($username)) $username_err = "Username is required";
+    if(!preg_match($name_pattern, $username)) $username_err = "Username is invalid";
     if(empty($email)) $email_err = "Email is required";
+    if(!preg_match($email_pattern, $email)) $email_err = "Email address invalid";
     if(empty($phone)) $phone_err = "Phone is required";
     if(empty($password)) $password_err = "USername is required";
     if(empty($confirm_password)) $confirm_password_err = "Password confirmation is required";
